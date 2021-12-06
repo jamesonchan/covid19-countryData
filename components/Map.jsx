@@ -6,6 +6,8 @@ import { countryInfoState } from "../atoms/CountryInfoAtom";
 
 function Map() {
   const [countryInfo] = useRecoilState(countryInfoState);
+  const [selectedCountry, setSelectedCountry] = useState({});
+
   const coordinates = countryInfo?.map((info) => ({
     latitude: info.latitude,
     longitude: info.longitude,
@@ -21,7 +23,8 @@ function Map() {
     zoom: 8,
   });
 
-  const ref = useRef();
+  const buttonRef = useRef(null);
+  const popupRef = useRef(null);
 
   const goToCountry = () => {
     setViewport({
@@ -35,7 +38,14 @@ function Map() {
   };
 
   useEffect(() => {
-    ref.current.click();
+    buttonRef.current.click();
+  }, [center.latitude, center.longitude]);
+
+  useEffect(() => {
+    const timer = setTimeout(()=>{
+      popupRef?.current?.click()
+    },5100)
+    return ()=>clearTimeout(timer)
   }, [center.latitude, center.longitude]);
 
   return (
@@ -54,12 +64,43 @@ function Map() {
               offsetLeft={-20}
               offsetTop={-30}
             >
-              <p className='cursor-pointer text-2xl animate-bounce'>📌</p>
+              <p
+                ref={popupRef}
+                onClick={() => setSelectedCountry(result)}
+                className="cursor-pointer text-2xl animate-bounce"
+                aria-label="pin"
+              >
+                📌
+              </p>
             </Marker>
+            {/* popup */}
+            {selectedCountry.longitude === result.longitude ? (
+              <Popup
+                onClose={() => setSelectedCountry({})}
+                offsetLeft={-5}
+                offsetTop={-20}
+                closeOnClick={true}
+                latitude={result.latitude}
+                longitude={result.longitude}
+                tipSize={5}
+                className="popup"
+              >
+                <div className="p-5 w-[240px] text-white font-semibold">
+                  <h1 className="text-sm  text-center">
+                    {result.country} ({result.code})
+                  </h1>
+                  <p>Case confirmed : {result.confirmed}</p>
+                  <p>Deaths : {result.deaths}</p>
+                  <p>Recovered : {result.recovered}</p>
+                </div>
+              </Popup>
+            ) : (
+              false
+            )}
           </div>
         ))}
       </ReactMapGL>
-      <button className="hidden" ref={ref} onClick={goToCountry}>
+      <button className="hidden" ref={buttonRef} onClick={goToCountry}>
         Go to country
       </button>
     </>

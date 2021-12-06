@@ -13,7 +13,7 @@ function DisplayData() {
   const options = {
     method: "GET",
     url: "https://covid-19-data.p.rapidapi.com/country",
-    params: { name: search },
+    params: { name: search},
     headers: {
       "x-rapidapi-host": "covid-19-data.p.rapidapi.com",
       "x-rapidapi-key": "ddb2864c62mshd3a06510c7ee159p1b122fjsnd2e3399bdbd7",
@@ -34,8 +34,9 @@ function DisplayData() {
     fetchData();
   }, [search]);
 
+
   return (
-    <div className='w-[400px] h-[120px] bg-yellow-300'>
+    <div className="w-[400px] h-[120px] text-white">
       {loading ? (
         <div className="p-5">
           <ClipLoader color={"#93c5fd"} size={20} />
