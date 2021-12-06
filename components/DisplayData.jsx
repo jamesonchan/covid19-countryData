@@ -36,7 +36,7 @@ function DisplayData() {
 
 
   return (
-    <div className="w-[400px] h-[120px] text-white">
+    <div className="w-[300px] h-[120px] text-white">
       {loading ? (
         <div className="p-5">
           <ClipLoader color={"#93c5fd"} size={20} />

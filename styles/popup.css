@@ -3,7 +3,7 @@
   border-radius: 0.5rem;
   opacity: 0.7;
   border-width: 2px;
-  border-color: rgb(238, 190, 34);
+  border-color: rgb(33, 240, 255);
   animation: popup 0.2s;
 }
 
@@ -41,7 +41,7 @@
 }
 
 .popup .mapboxgl-popup-tip {
-  border-top-color: rgb(238, 190, 34) !important;
+  border-top-color: rgb(33, 240, 255) !important;
   animation: tip 0.2s;
 }
 
