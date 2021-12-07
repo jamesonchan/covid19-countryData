@@ -11,7 +11,7 @@ export default function Home() {
           <DisplayData />
         </section>
 
-        <section className="p-5 w-[600px] h-[800px] md:w-[900px] md:h-[800px] lg:w-[1200px] lg:h-[800px] xl:w-[2200px] xl:h-[800px] col-span-2">
+        <section className="p-5 w-[400px] h-[650px] md:w-[900px] md:h-[800px] lg:w-[1200px] lg:h-[800px] xl:w-[2200px] xl:h-[800px] col-span-2">
           <Map />
         </section>
       </main>
