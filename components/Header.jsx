@@ -1,9 +1,10 @@
-import React,{useMemo,useEffect} from "react";
+import React, { useMemo, useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { searchState } from "../atoms/SearchAtom";
 import { debounce } from "lodash";
 import Image from "next/image";
-import Mask from '../images/istockphoto-1210279557-1024x1024.png'
+import Mask from "../images/istockphoto-1210279557-1024x1024.png";
+import {SearchIcon} from '@heroicons/react/outline'
 
 
 function Header() {
@@ -24,25 +25,25 @@ function Header() {
     };
   }, []);
   return (
-    <div className=' bg-[#081217] flex'>
-      <div className="p-5 mt-2 items-center flex-grow">
+    <div className=" bg-[#081217] flex justify-between">
+      <div className="p-5 items-center relative flex">
         <input
-          className="text-sm p-2 px-2 outline-none"
+          className="text-xs p-2 px-5 outline-none flex-grow"
           type="text"
-          placeholder="search country name"
+          placeholder="Search country name"
           onChange={debouncedHandleSearch}
         />
-    
+        <SearchIcon className={`w-5 h-5 absolute right-7 ${search ? 'text-gray-700':'text-gray-400'}`}/>
       </div>
-      <div className='pr-5'>
-      <Image 
+      <div className="pr-5">
+        <Image
           src={Mask}
-          width={100}
-          height={100}
+          width={70}
+          height={70}
           alt="mask"
-          objectFit='cover'
+          objectFit="cover"
         />
-     </div>
+      </div>
     </div>
   );
 }

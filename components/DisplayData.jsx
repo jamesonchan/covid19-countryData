@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { searchState } from "../atoms/SearchAtom";
 import axios from "axios";
 import { ClipLoader } from "react-spinners";
 import { countryInfoState } from "../atoms/CountryInfoAtom";
+import { loadingState } from "../atoms/loadingAtom";
 
 function DisplayData() {
   const [search, setSearch] = useRecoilState(searchState);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useRecoilState(loadingState);
   const [countryInfo, setCountryInfo] = useRecoilState(countryInfoState);
 
   const options = {
